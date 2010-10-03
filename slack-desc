@@ -1,0 +1,11 @@
+openjpeg: OpenJPEG (Open-source C-Library for JPEG 2000)
+openjpeg:
+openjpeg: The OpenJPEG is an open-source library for handling the JPEG 2000
+openjpeg: still-image compression format, written in C language.  It has been
+openjpeg: developed in order to promote the use of JPEG 2000 standard from
+openjpeg: the Joint Photographic Experts Group (JPEG).
+openjpeg:
+openjpeg:
+openjpeg:
+openjpeg:
+openjpeg: Packaged by Georgi D. Sotirov <gdsotirov@dir.bg>
