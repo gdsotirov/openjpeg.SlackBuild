@@ -19,13 +19,13 @@
 #
 # Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
-# $Id: openjpeg.SlackBuild,v 1.5 2013/02/16 15:57:51 gsotirov Exp $
+# $Id: openjpeg.SlackBuild,v 1.6 2013/02/16 16:24:22 gsotirov Exp $
 #
 
 . ../../slack-package.conf
 
 NAME=openjpeg
-VERSION=1.5.1
+VERSION=2.0.0
 ARCH=${ARCH:-i486}
 BUILD=${BUILD:-1}
 
@@ -56,25 +56,16 @@ cd $SRC
 fix_source
 
 # Configure
-CFLAGS=$SLKCFLAGS \
-CXXFLAGS=$SLKCFLAGS \
-./configure --build=$ARCH-slackware-linux \
-            --host=$ARCH-slackware-linux \
-            --prefix=/usr \
-            --libdir=/usr/lib${LIBDIRSUFFIX} \
-            --sysconfdir=/etc \
-            --mandir=/usr/man \
-            --docdir=/usr/doc/$NAME-$VERSION \
-            --enable-shared=yes \
-            --enable-static=no \
-            --enable-png \
-            --enable-tiff \
-            --enable-lcms1 || exit 4
+cmake -LAH \
+      -DCMAKE_C_FLAGS="$SLKCFLAGS" \
+      -DCMAKE_CXX_FLAGS="$SLKCFLAGS" \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_INSTALL_PREFIX=/usr \
+      -DBUILD_CODEC=on \
+      -DBUILD_SHARED_LIBS=on || exit 4
 
 # Build & install
-# No -j flag, because of build system fail
-make V=1 || exit 5
-( cd doc; make; make mandir=$PKG/usr/man install )
+make VERBOSE=1 -j4 || exit 5
 make DESTDIR=$PKG install || exit 6
 
 # Prepare
