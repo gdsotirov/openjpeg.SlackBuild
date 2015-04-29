@@ -19,7 +19,7 @@
 #
 # Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
-# $Id: openjpeg.SlackBuild,v 1.7 2015/04/26 12:23:22 gsotirov Exp $
+# $Id: openjpeg.SlackBuild,v 1.8 2015/04/29 19:25:15 gsotirov Exp $
 #
 
 . ../../slack-package.conf
@@ -62,7 +62,10 @@ cmake -LAH \
       -DCMAKE_BUILD_TYPE=Release \
       -DCMAKE_INSTALL_PREFIX=/usr \
       -DBUILD_CODEC=on \
-      -DBUILD_SHARED_LIBS=on || exit 4
+      -DBUILD_SHARED_LIBS=on \
+      -DOPENJPEG_INSTALL_LIB_DIR=lib$LIBDIRSUFFIX \
+      -DOPENJPEG_INSTALL_MAN_DIR=man \
+      -DOPENJPEG_INSTALL_DOC_DIR=doc/$NAME-$VERSION || exit 4
 
 # Build & install
 make VERBOSE=1 -j4 || exit 5
