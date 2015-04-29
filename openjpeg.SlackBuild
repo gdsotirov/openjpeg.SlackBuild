@@ -19,7 +19,7 @@
 #
 # Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
-# $Id: openjpeg.SlackBuild,v 1.9 2015/04/29 19:31:18 gsotirov Exp $
+# $Id: openjpeg.SlackBuild,v 1.10 2015/04/29 20:11:36 gsotirov Exp $
 #
 
 . ../../slack-package.conf
@@ -75,6 +75,9 @@ make DESTDIR=$PKG install || exit 6
 bin_perms $PKG
 ( cd $PKG; strip_bin; strip_lib )
 ( cd $SRC; create_docs $PKG $NAME-$VERSION )
+# Install man pages manually as cmake sucks
+install -m 755 -d $PKG/usr/man
+( cd $SRC/doc/man; cp -a * $PKG/usr/man )
 gzip_man $PKG
 
 mkdir -p $PKG/install
