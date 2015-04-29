@@ -19,13 +19,13 @@
 #
 # Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
-# $Id: openjpeg.SlackBuild,v 1.8 2015/04/29 19:25:15 gsotirov Exp $
+# $Id: openjpeg.SlackBuild,v 1.9 2015/04/29 19:31:18 gsotirov Exp $
 #
 
 . ../../slack-package.conf
 
 NAME=openjpeg
-VERSION=2.0.1
+VERSION=2.1.0
 ARCH=${ARCH:-i486}
 BUILD=${BUILD:-1}
 
