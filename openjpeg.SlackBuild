@@ -19,7 +19,7 @@
 #
 # Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
-# $Id: openjpeg.SlackBuild,v 1.1.2.1 2016/08/25 16:42:06 gsotirov Exp $
+# $Id: openjpeg.SlackBuild,v 1.1.2.2 2016/08/25 20:07:59 gsotirov Exp $
 #
 
 . ../../slack-package.conf
@@ -76,6 +76,7 @@ make install DESTDIR=$PKG || exit 4
 # FIx installation
 ( cd $PKG/usr; mv lib lib${LIBDIRSUFFIX} )
 ( cd $PKG; mkdir -p usr/include; mv ${PNAME} usr/include/${PNAME}-${VER_MAJ}.${VER_MIN} )
+( cd $PKG/usr/include; ln -s ${PNAME}-${VER_MAJ}.${VER_MIN}/openjpeg.h )
 
 # Prepare
 bin_perms $PKG
