@@ -19,13 +19,13 @@
 #
 # Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
-# $Id: openjpeg.SlackBuild,v 1.5 2013/02/16 15:57:51 gsotirov Exp $
+# $Id: openjpeg.SlackBuild,v 1.5.4.1 2016/09/13 11:09:23 gsotirov Exp $
 #
 
 . ../../slack-package.conf
 
 NAME=openjpeg
-VERSION=1.5.1
+VERSION=1.5.2
 ARCH=${ARCH:-i486}
 BUILD=${BUILD:-1}
 
@@ -56,6 +56,7 @@ cd $SRC
 fix_source
 
 # Configure
+autoreconf --verbose --install || exit 4
 CFLAGS=$SLKCFLAGS \
 CXXFLAGS=$SLKCFLAGS \
 ./configure --build=$ARCH-slackware-linux \
@@ -69,13 +70,13 @@ CXXFLAGS=$SLKCFLAGS \
             --enable-static=no \
             --enable-png \
             --enable-tiff \
-            --enable-lcms1 || exit 4
+            --enable-lcms1 || exit 5
 
 # Build & install
 # No -j flag, because of build system fail
-make V=1 || exit 5
+make V=1 || exit 6
 ( cd doc; make; make mandir=$PKG/usr/man install )
-make DESTDIR=$PKG install || exit 6
+make DESTDIR=$PKG install || exit 7
 
 # Prepare
 bin_perms $PKG
