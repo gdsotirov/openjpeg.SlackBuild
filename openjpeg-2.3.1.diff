@@ -1,0 +1,15 @@
+# Fix hardcoded docs destination
+# See https://github.com/uclouvain/openjpeg/issues/1322
+# See https://github.com/uclouvain/openjpeg/commit/aaddbc7
+diff -urNad openjpeg-2.3.1-orig/doc/CMakeLists.txt openjpeg-2.3.1/doc/CMakeLists.txt
+--- openjpeg-2.3.1-orig/doc/CMakeLists.txt	2019-04-02 15:45:15.000000000 +0300
++++ openjpeg-2.3.1/doc/CMakeLists.txt	2021-01-09 11:07:56.124355015 +0200
+@@ -44,7 +44,7 @@
+ 
+   # install HTML documentation (install png files too):
+   install(DIRECTORY ${CMAKE_BINARY_DIR}/doc/html
+-    DESTINATION share/doc
++    DESTINATION ${OPENJPEG_INSTALL_DOC_DIR}
+     PATTERN ".svn" EXCLUDE
+   )
+ else()
